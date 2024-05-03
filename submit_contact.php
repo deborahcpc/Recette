@@ -10,9 +10,36 @@
         return;
     } ?>
 
-<!DOCTYPE <html>
-    <head>
+<?php
+if (isset($_FILES['sreenshot']) && $_FILES['screenshot']['error'] == 0 )
+{
+    if ($_FILES['screenshot']['size'] > 1000000 ) {
+        echo "l'envoi n'a pas pu être effectué, erreur ou fichier trop volumineux";
+        return;
+    }
 
+
+    $fileInfo = pathinfo($_FILES['screenshot']['name']);
+    $extension = $fileInfo['extension'];
+    $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+        if(!in_array($extension, $allowedExtensions)) {
+            echo "l'envoi n'a pas pu être effectué, l'extension {$extension} n'est autorisée";
+            return;
+        }
+
+    $path = __DIR__ . '/uploads';
+    if (!is_dir($path)) {
+        echo "l'envoi n'a pas pu être effectué, le dossier uploads est manquant";
+        return;
+    }
+
+    move_uploaded_file($_FILES['screenshot']['tmp_name'], $path . basename($_FILES['screenshot']['name']));
+}
+?>
+
+
+<!DOCTYPE <html>
+ <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +57,7 @@
         <p class="card-text"><b>Message
 
         </b> : <?php echo (strip_tags($postData['message']));?></p>
+  
 </div>
 </div>
 </div>
