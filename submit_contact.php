@@ -8,10 +8,11 @@
     ) {
         echo('il faut un email et un message valide pour soumettre le formulaire.');
         return;
-    } ?>
+    } 
 
-<?php
-if (isset($_FILES['sreenshot']) && $_FILES['screenshot']['error'] == 0 )
+    $isFileLoaded = false;
+
+if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0 )
 {
     if ($_FILES['screenshot']['size'] > 1000000 ) {
         echo "l'envoi n'a pas pu être effectué, erreur ou fichier trop volumineux";
@@ -27,13 +28,14 @@ if (isset($_FILES['sreenshot']) && $_FILES['screenshot']['error'] == 0 )
             return;
         }
 
-    $path = __DIR__ . '/uploads';
+    $path = __DIR__ . '/uploads/';
     if (!is_dir($path)) {
         echo "l'envoi n'a pas pu être effectué, le dossier uploads est manquant";
         return;
     }
 
     move_uploaded_file($_FILES['screenshot']['tmp_name'], $path . basename($_FILES['screenshot']['name']));
+    $isFileLoaded = true;
 }
 ?>
 
@@ -55,9 +57,11 @@ if (isset($_FILES['sreenshot']) && $_FILES['screenshot']['error'] == 0 )
         <h5 class="card-title"> Rappel de vos informations</h5>
         <p class="card-text"><b>Email</b> : <?php echo $postData['email']; ?></p>
         <p class="card-text"><b>Message
-
         </b> : <?php echo (strip_tags($postData['message']));?></p>
-  
+        <?php if ($isFileLoaded) : ?>
+            <div class="alert alert=sucess" role="alert">
+            L'envoi a bien été effectué</div>
+            <?php endif; ?>
 </div>
 </div>
 </div>
