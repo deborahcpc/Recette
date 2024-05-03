@@ -30,4 +30,13 @@ function displayAuthor(string $authorEmail, array $users): string
     }
   } return 'inconnu';
 }
-?>
+
+function redirectToUrl(string $url): never 
+{
+ header("Location: {$url}");
+ exit();
+}
+
+
+
+

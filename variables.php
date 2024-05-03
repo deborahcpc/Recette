@@ -61,24 +61,27 @@ $recipes = [
       'age' => 24,
       'full_name' => 'Boris L',
       'adress' => '111 avenue du paradis 66666 Enfer',
+      'password' => 'blabla'
     ],
     [
       'email' => 'blabla@gmail.com',
       'age' => 24,
       'full_name' => 'Déborah C',
       'adress' => '111 avenue du paradis 66666 Enfer',
+      'password' => 'blbl',
     ],
     [
       'email' => 'bla@gmail.com',
       'age' => 24,
       'full_name' => 'Toka C',
       'adress' => '111 avenue du paradis 66666 Enfer',
+      'password' => 'bb'
     ],
     [
       'email' => 'b@gmail.com',
       'age' => 24,
       'full_name' => 'Noémie R',
       'adress' => '111 avenue du paradis 66666 Enfer',
+      'password' => 'lll'
     ],
   ];
-  ?>
